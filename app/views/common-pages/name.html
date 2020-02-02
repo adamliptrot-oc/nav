@@ -1,0 +1,50 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  Name of the practitioner | Register a new practitioner | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="page-header--lede heading-large">Name of the practitioner</h1>
+
+      <form action="post-address.html" method="get" class="form">
+
+        <legend class="visuallyhidden">Name of the practitioner</legend>
+
+          <div class="form-text">
+
+            <div class="form-group">
+              <label class="form-label" for="firstname">First name</label>
+              <input class="form-control" id="firstname" name="firstname" type="text">
+            </div>
+
+
+            <div class="form-group">
+              <label class="form-label" for="last-name-third-party">Last name</label>
+              <input class="form-control" id="lastname" name="lastname" type="text">
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

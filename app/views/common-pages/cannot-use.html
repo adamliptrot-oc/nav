@@ -1,0 +1,45 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  You cannot use this service | Register a new practitioner | NHSBSA
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <h1 class="heading-xlarge">
+        You cannot use this service
+      </h1>
+
+
+      <p>As you registerd before 1999 you cannot use the online service.</p>
+      <p>You can either:</p>
+      <ul>
+        <li>Call us on 0800 600 700</li>
+        <li>Fill in the <a href="">paper form IE9800</a> and send it to us in the post</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout_bsa.html" %}
 
 {% block page_title %}
-  You cannot use this service | Register a new practitioner | NHSBSA
+  You cannot use this service | {{ serviceName }} | NHSBSA
 {% endblock %}
 
 {% block proposition_header %}
@@ -16,7 +16,7 @@
 
 <main id="content" role="main">
 
-  {% include "../includes/phase_banner_beta.html" %}
+  {% include "includes/phase_banner_beta.html" %}
 
   <a href="javascript:history.go(-1)" class="link-back">Back</a>
 
@@ -28,12 +28,11 @@
         You cannot use this service
       </h1>
 
-
-      <p>As you registerd before 1999 you cannot use the online service.</p>
+      <p>As you told us the bite or sting happened outside the UK.</p>
       <p>You can either:</p>
       <ul>
         <li>Call us on 0800 600 700</li>
-        <li>Fill in the <a href="">paper form IE9800</a> and send it to us in the post</li>
+        <li>Fill in the <a href="">paper <span class="visually-hidden">non-UK bite </span>form IE9800</a> and send it to us in the post</li>
       </ul>
 
     </div>

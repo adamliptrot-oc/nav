@@ -1,0 +1,49 @@
+@import './patterns/hmrc-add-to-a-list';
+// Related items
+// (These styles will be moved to GOV.UK elements, duplicating here for now.)
+.govuk-related-items {
+    margin-top: 20px;
+    padding-top: 5px;
+
+    .heading-medium {
+        margin-top: 0.3em;
+        margin-bottom: 0.5em;
+    }
+
+    li {
+        margin-bottom: 10px;
+        list-style-type: none;
+    }
+  }
+
+  // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+  .u--m-t-2 {
+    margin-top: 2rem;
+  }
+  .address-partial {
+    display: block;
+  }
+
+  .error {
+    margin-right: 15px;
+    border-left: 4px solid #b10e1e;
+    padding-left: 10px;
+  }
+
+  .error > .form-control {
+    border: 4px solid #b10e1e;
+  }
+
+  @media (min-width: 641px) {
+    .error {
+      border-left: 5px solid #b10e1e;
+      padding-left: 15px;
+    }
+  }
+
+  .error > .form-control {
+    border: 4px solid #b10e1e;
+  }
+  .form-control-error {
+    border: 4px solid #b10e1e;
+  }

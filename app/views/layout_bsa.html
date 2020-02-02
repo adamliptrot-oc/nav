@@ -2,18 +2,23 @@
 
 {% block head %}
   <link href="/public/stylesheets/bsa.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="/public/stylesheets/app.css" media="screen" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block header_content %}
   {% include "bsa_head.html" %}
 {% endblock %}
-   
+
 {% block footer_support_links %}
   {% if useAutoStoreData %}
-   
+  <ul>
+    <li>
+      <a href="/prototype-admin/clear-data">Clear data</a>
+    </li>
+  </ul>
   {% endif %}
 {% endblock %}
-    
+
 {% block body_end %}
   {% include "includes/scripts.html" %}
 {% endblock %}

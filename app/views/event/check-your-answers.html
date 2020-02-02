@@ -1,0 +1,76 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  Check your answers | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+  <div class="grid-row">
+
+
+    <div class="column-two-thirds">
+
+
+      <h1 class="heading-large">
+        Check your answers for your bite or sting
+      </h1>
+      <hr />
+
+      <!-- use additional modifier class to change column widths for multiple groups of questions and answers: -->
+      <!--   * `cya-questions-short` for short questions -->
+      <!--   * `cya-questions-long` for long questions -->
+      <!--   * none for single group of q&a -->
+      <dl class="govuk-check-your-answers cya-questions-short">
+        <div>
+          <dt class="cya-question">
+            What is the nearest town to where the bite or sting happened?
+          </dt>
+          <dd class="cya-answer">
+            {{ data['place'] | default("Not provided") }}
+          </dd>
+          <dd class="cya-change">
+            <a href="town.html">Change<span class="visually-hidden"> the location</span></a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            Where were you stung or bitten?
+          </dt>
+          <dd class="cya-answer">
+            {{ data['body'] | default("Not provided") }}
+          </dd>
+          <dd class="cya-change">
+            <a href="checkbox.html">Change<span class="visually-hidden"> the location</span></a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            What kind of insect was it?
+          </dt>
+          <dd class="cya-answer">
+            {{ data['insect'] | default("Not provided") }}
+          </dd>
+          <dd class="cya-change">
+            <a href="insect.html">Change<span class="visually-hidden"> the kind of insect</span></a>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="u--m-t-2">
+        <a class="button" href="/addevent" role="button">Continue</a>
+      </div>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

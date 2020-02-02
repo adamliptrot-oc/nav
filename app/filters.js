@@ -37,7 +37,34 @@ module.exports = function (env) {
     documentation.
 
   ------------------------------------------------------------------ */
+  String.prototype.replaceAll = function (search, replacement) {
+    var target = this
+    return target.split(search).join(replacement)
+  }
 
+
+  filters.month = function (x) {
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    if (x > 0) {
+      return months[x - 1] // returns date as per month
+    } else {
+      return x
+    }
+  }
+
+  filters.formatAddress = function (addr) {
+    addr = addr.replaceAll(', , ,', ',')
+    addr = addr.replaceAll(', ,', ',') // get rid of double commas where an optional field has been omitted
+    addr = addr.replaceAll(',,', ',')
+    // wrap address in spans
+    // spans will add pauses to each line for screenreaders but this is ok as where we use addresses is where we want people to check addresses are correct
+    addr = '<span>' + addr.replaceAll(',', ',</span><span>') + '</span>'
+    addr = addr.replaceAll('<span> ', '<span>')
+    addr = addr.replace('<span></span>', '')
+    addr = addr.replaceAll('<span>', '<span class="address-partial">')
+
+    return addr
+  }
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */

@@ -1,0 +1,60 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+What is the nearest town to where the bite or sting happened? | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+{% set errMessage = "" %}
+{% set errMode = false %}
+{% for err in data['errors'] %}
+  {% if err == "place" %}
+    {% set errMode = true %}
+    {% set errMessage = "Enter the nearest town, it can be several miles away" %}
+  {% endif %}
+{% endfor %}
+
+<main id="content" role="main">
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      {% if errMode %}
+      <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+          There is a problem
+        </h1>
+        <ul class="error-summary-list">
+          <li><a href="#place">{{errMessage}}</a></li>
+        </ul>
+      </div>
+      {% endif %}
+      <h1 class="page-header--lede heading-large">What is the nearest town to where the bite or sting happened?</h1>
+
+      <form action="/event/town" method="post" class="form">
+
+          <div class="form-text">
+            <div class="form-group {% if errMode %}error{% endif %}">
+              <label class="form-label visually-hidden">Town</label>
+              {% if errMessage > "" %}
+              <span class="error-message">{{errMessage}}</span>
+              {% endif %}
+              <input class="form-control" id="place" name="place" type="text" value="{{data['place']}}" maxlength="20">
+            </div>
+          </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

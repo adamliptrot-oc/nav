@@ -1,0 +1,101 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  Check your answers | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+
+{% set errMessage = "" %}
+{% set errMode = false %}
+{% for err in data['errors'] %}
+  {% if err == "more" %}
+    {% set errMode = true %}
+    {% set errMessage = "Select no if you have finished adding bites and stings" %}
+  {% endif %}
+{% endfor %}
+<main id="content" role="main">
+  {% include "includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+  <div class="grid-row">
+
+
+    <div class="column-two-thirds">
+      {% if errMode %}
+      <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+          There is a problem
+        </h1>
+        <ul class="error-summary-list">
+          <li><a href="#form">{{errMessage}}</a></li>
+        </ul>
+      </div>
+      {% endif %}
+
+      <h1 class="heading-large">
+        Insect bites or stings
+      </h1>
+
+      {% set insectCount = data['bites-and-stings'] | length %}
+      {% if insectCount > 0 %}
+      <div class="form-group">
+        <dl class="hmrc-add-to-a-list hmrc-add-to-a-list--short">
+          {% for peep in data['bites-and-stings'] %}
+          <div class="hmrc-add-to-a-list__contents">
+            <dt class="hmrc-add-to-a-list__identifier hmrc-add-to-a-list__identifier--light">
+              {{peep['place']}}, {{peep['insect']}}
+            </dt>
+            <dd class="hmrc-add-to-a-list__change">
+              <a href="404.html">Change</a>
+            </dd>
+            <dd class="hmrc-add-to-a-list__remove">
+              <a href="404.html">Remove</a>
+            </dd>
+          </div>
+          {% endfor %}
+        </dl>
+      </div>
+      {% endif %}
+
+      <h2 class="heading-medium">Do you want to add another bite or sting?</h2>
+
+      <form action="/insect-more" method="post" class="form">
+
+        <div class="form-group {% if errMode %}error{% endif %}">
+
+          <fieldset class="inline" id="form">
+            <legend class="visually-hidden">
+              Did the bite or sting happen in the UK?
+            </legend>
+            {% if errMessage > "" %}
+            <span class="error-message">{{errMessage}}</span>
+            {% endif %}
+            <div class="multiple-choice">
+              <input id="yes" type="radio" name="more" value="yes">
+              <label for="yes">Yes</label>
+            </div>
+
+            <div class="multiple-choice">
+              <input id="no" type="radio" name="more" value="no">
+              <label for="no">No</label>
+            </div>
+
+        </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Next">
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  What is your address? | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+{% set errMessage = "" %}
+{% set errMode = false %}
+{% for err in data['errors'] %}
+  {% if err == "address1" or err == "address2" or err == "town" or err == "postcode" %}
+    {% set errMode = true %}
+  {% endif %}
+{% endfor %}
+
+<main id="content" role="main">
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      {% if errMode %}
+      <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+        <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+          There is a problem
+        </h1>
+        <ul class="error-summary-list">
+          {% set erraddress1 = false %}
+          {% set erraddress2 = false %}
+          {% set errtown = false %}
+          {% set errpostcode = false %}
+          {% for err in data['errors'] %}
+            {% if err == "address1" %}
+              {% set erraddress1 = true %}
+              <li><a href="#address-one">Enter address line 1</a></li>
+            {% endif %}
+            {% if err == "address2" %}
+            {% set erraddress2 = true %}
+              <li><a href="#address-two">Enter address line 2</a></li>
+            {% endif %}
+            {% if err == "town" %}
+              {% set errtown = true %}
+              <li><a href="#town">Enter your town or city</a></li>
+            {% endif %}
+            {% if err == "postcode" %}
+              {% set errpostcode = true %}
+              <li><a href="#postcode">Enter your postcode</a></li>
+            {% endif %}
+          {% endfor %}
+
+        </ul>
+      </div>
+      {% endif %}
+
+
+      <h1 class="page-header--lede heading-large">What is your address?</h1>
+
+
+      <form action="/address" method="post" class="form">
+
+      <div class="form-group">
+        <label class="form-label" for="address-one">
+          Address line 1
+        </label>
+        {% for err in data['errors'] %}
+        {% if err == "address1" %}
+          <span class="error-message">Enter address line 1</span>
+        {% endif %}
+        {% endfor %}
+        <input class="form-control{% if erraddress1 %} form-control-error{% endif %}" id="address-one" name="address-one" type="text" value="{{data['address-one']}}">
+      </div>
+
+      <div class="form-group">
+              <label class="form-label" for="address-two">
+          Address line 2
+        </label>
+        {% for err in data['errors'] %}
+        {% if err == "address2" %}
+          <span class="error-message">Enter address line 2</span>
+        {% endif %}
+        {% endfor %}
+        <input class="form-control{% if erraddress2 %} form-control-error{% endif %}"  id="address-two" name="address-two" type="text" value="{{data['address-two']}}">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="town">
+          Town or city
+        </label>
+        {% for err in data['errors'] %}
+        {% if err == "town" %}
+          <span class="error-message">Enter your town or city</span>
+        {% endif %}
+        {% endfor %}
+        <input class="form-control{% if errtown %} form-control-error{% endif %}" id="town" name="town" type="text" value="{{data['town']}}">
+      </div>
+
+
+      <div class="form-group">
+        <label class="form-label" for="postcode">
+          Postcode
+        </label>
+        {% for err in data['errors'] %}
+        {% if err == "postcode" %}
+          <span class="error-message">Enter your postcode</span>
+        {% endif %}
+        {% endfor %}
+        <input class="form-control form-control-1-4{% if errpostcode %} form-control-error{% endif %}"  id="postcode" name="postcode" type="text" value="{{data['postcode']}}">
+      </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Continue">
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</main>
+
+{% endblock %}

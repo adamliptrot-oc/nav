@@ -1,0 +1,101 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  Where were you stung or bitten? | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+{% set errMessage = "" %}
+{% set errMode = false %}
+{% for err in data['errors'] %}
+  {% if err == "body" %}
+    {% set errMode = true %}
+    {% set errMessage = "Check all places where you received a bite or sting from this insect" %}
+  {% endif %}
+{% endfor %}
+
+
+<main id="content" role="main">
+  {% include "../includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+    <div class="grid-row">
+      <div class="column-two-thirds">
+        {% if errMode %}
+        <div class="error-summary" role="group" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+          <h1 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
+            There is a problem
+          </h1>
+          <ul class="error-summary-list">
+            <li><a href="#form">{{errMessage}}</a></li>
+          </ul>
+        </div>
+        {% endif %}
+
+        <h1 class="page-header--lede heading-large">Where were you stung or bitten?</h1>
+
+       <form class="form" action="/body" method="post">
+        <fieldset class="form-group {% if errMode %}error{% endif %}" id="form">
+          <label class="visually-hidden">
+            Where were you stung or bitten?
+          </label>
+          {% if errMessage > "" %}
+              <span class="error-message">{{errMessage}}</span>
+          {% endif %}
+          <div class="form-hint">Select all that apply</div>
+          <div class="multiple-choice multiple-radio">
+            <input id="arm" name="body" type="checkbox" value="arm">
+            <label for="arm">Arm</label>
+          </div>
+          <div class="multiple-choice multiple-radio">
+            <input id="leg" name="body" type="checkbox" value="leg">
+            <label for="leg">Leg</label>
+          </div>
+          <div class="multiple-choice multiple-radio">
+            <input id="head" name="body" type="checkbox" value="head">
+            <label for="head">Head</label>
+          </div>
+
+        </fieldset>
+
+
+          <div>
+          </div>
+
+        <div class="form-group">
+          <input class="button" type="submit" value="Next">
+        </div>
+        <p class="navigation"><a class="cancel" href="start">Cancel</a></p>
+      </form>
+
+      </div>
+
+    </div>
+
+</main>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

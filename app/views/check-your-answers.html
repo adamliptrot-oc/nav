@@ -1,0 +1,94 @@
+{% extends "layout_bsa.html" %}
+
+{% block page_title %}
+  What is your date of birth? | {{ serviceName }} | NHSBSA
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  {% include "includes/phase_banner_beta.html" %}
+
+  <a href="javascript:history.go(-1)" class="link-back">Back</a>
+
+  <div class="grid-row">
+
+
+    <div class="column-two-thirds">
+
+
+      <h1 class="heading-large">
+        Check your answers
+      </h1>
+      <hr />
+
+      <h3 class="heading-medium">
+        Bites or stings
+      </h3>
+      <dl class="govuk-check-your-answers cya-questions-short">
+      <div>
+        <dt class="cya-question">
+          Bites or stings reported
+        </dt>
+        <dd class="cya-answer">
+          {{ data['bites-and-stings'] | length}}
+        </dd>
+        <dd class="cya-change">
+          <a href="list.html">
+            Change<span class="visually-hidden"> bites and stings</span>
+          </a>
+        </dd>
+      </div>
+      </dl>
+      <!-- only add a heading for a list if there is more than one list -->
+      <h3 class="heading-medium">
+        Personal details
+      </h3>
+
+      <dl class="govuk-check-your-answers cya-questions-short">
+
+        <div>
+          <dt class="cya-question">
+            What is your date of birth?
+          </dt>
+          <dd class="cya-answer">
+            {{ data['dob-day']}} {{ data['dob-month'] | month }} {{ data['dob-year']}}
+          </dd>
+          <dd class="cya-change">
+            <a href="404.html">Change</a>
+          </dd>
+        </div>
+
+        <div>
+          <dt class="cya-question">
+            What is your address?
+          </dt>
+          <dd class="cya-answer">
+            {% set Addr = data['address-one'] + "," + data['address-two'] + "," + data['town'] + "," + data['postcode'] %}
+            {{ Addr | formatAddress | safe}}
+          </dd>
+          <dd class="cya-change">
+            <a href="404.html">Change</a>
+          </dd>
+        </div>
+
+
+      </dl>
+
+
+
+      <h4 class="heading-medium">Now send your submission</h4>
+
+      <p class="text">
+        By submitting this notification you are confirming that, to the best of your knowledge, the details you are providing are correct.
+      </p>
+
+      <div class="form-group">
+        <a href="done.html" class="button">Accept and send application</a>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout_bsa.html" %}
 
 {% block page_title %}
-  Name of the practitioner | Register a new practitioner | NHSBSA
+  Name of the practitioner | {{ serviceName }} | NHSBSA
 {% endblock %}
 
 {% block content %}
@@ -30,7 +30,7 @@
 
 
             <div class="form-group">
-              <label class="form-label" for="last-name-third-party">Last name</label>
+              <label class="form-label" for="lastname">Last name</label>
               <input class="form-control" id="lastname" name="lastname" type="text">
             </div>
 

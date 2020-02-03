@@ -1,7 +1,7 @@
 {% extends "layout_bsa.html" %}
 
 {% block page_title %}
-  What qualifications dows the practitioner hold? | Register a new practitioner | NHSBSA
+  What qualifications dows the practitioner hold? | {{ serviceName }} | NHSBSA
 {% endblock %}
 
 {% block proposition_header %}
@@ -29,11 +29,11 @@
         </header>
 
        <form class="form" action="check-your-answers.html">
-        <fieldset class="form-group">
+        <fieldset class="form-group" aria-describedby="formhint">
           <legend class="visually-hidden">
             What qualifications does the practitioner hold?
           </legend>
-          <div class="form-hint">Select all that apply</div>
+          <div class="form-hint" id="formhint">Select all that apply</div>
           <div class="multiple-choice multiple-radio">
             <input id="email" name="email" type="checkbox" value="true">
             <label for="email">Member of the Royal College of Surgeons</label>
@@ -42,9 +42,9 @@
             <input id="text" name="text" type="checkbox" value="true">
             <label for="text">Member of the Royal College of Physicians</label>
           </div>
-                      <div class="multiple-choice multiple-radio">
-            <input id="text" name="text" type="checkbox" value="true">
-            <label for="text">Member of the Royal College of General Practitioners</label>
+          <div class="multiple-choice multiple-radio">
+            <input id="text2" name="text" type="checkbox" value="true">
+            <label for="text2">Member of the Royal College of General Practitioners</label>
           </div>
 
         </fieldset>

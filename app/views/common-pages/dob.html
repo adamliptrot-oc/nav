@@ -1,7 +1,7 @@
 {% extends "layout_bsa.html" %}
 
 {% block page_title %}
-  Date of birth of practitioner | Register a new practitioner | NHSBSA
+  Date of birth of practitioner | {{ serviceName }} | NHSBSA
 {% endblock %}
 
 {% block content %}
@@ -22,9 +22,9 @@
 
         <form action="#" class="form" method="get">
 
-          <fieldset class="form-group">
+          <fieldset class="form-group" aria-describedby="formhint">
             <legend class="visuallyhidden">What’s your email address?</legend>
-            <p class="form-hint">For example, 31 3 1980</p>
+            <p class="form-hint" id="formhint">For example, 31 3 1980</p>
 
             <div class="form-date">
               <div class="form-group form-group-day">
